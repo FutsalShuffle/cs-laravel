@@ -1,0 +1,28 @@
+{
+    "name": "futsalshuffle/cs-laravel",
+    "description": "Codestyle for projects",
+    "license": ["proprietary"],
+    "type": "composer-plugin",
+    "require": {
+        "php": "^7.4 || ^8.0",
+        "composer-plugin-api": "*",
+        "brainmaestro/composer-git-hooks": "^3.0.0",
+        "larastan/larastan": "^2.0"
+    },
+    "require-dev": {
+        "composer/composer": "^2.6"
+    },
+    "scripts": {
+        "code-style:fix": "docker run -it --rm -v $(pwd):/code ghcr.io/php-cs-fixer/php-cs-fixer:3-php8.3 fix --path-mode=intersection --config /code/.php_cs-fixer.php --allow-risky=yes",
+        "code-style:check": "docker run -it --rm -v $(pwd):/code ghcr.io/php-cs-fixer/php-cs-fixer:3-php8.3 fix --path-mode=intersection --config /code/.php_cs-fixer.php --dry-run --allow-risky=yes",
+        "code-style:analyze": "docker run --rm -v .:/app ghcr.io/phpstan/phpstan:2-php8.3 analyse -c phpstan.neon --ansi"
+    },
+    "autoload": {
+        "psr-4": {
+            "DigitalSector\\CsLaravel\\": "src"
+        }
+    },
+    "extra": {
+        "class": "DigitalSector\\CsLaravel\\Plugin"
+    }
+}
