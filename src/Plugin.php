@@ -16,7 +16,7 @@ use DigitalSector\CsLaravel\Enum\Commands;
 
 class Plugin implements PluginInterface, EventSubscriberInterface
 {
-    public const PLUGIN_VENDOR_PATH = '/digitaldsdev/codestyle/';
+    public const PLUGIN_VENDOR_PATH = '/futsalshuffle/cs-laravel/';
 
     private Composer $composer;
 
@@ -127,7 +127,7 @@ class Plugin implements PluginInterface, EventSubscriberInterface
         $phpstan = realpath($vendorPath . self::PLUGIN_VENDOR_PATH . 'phpstan.neon');
         $newPhpstan = $vendorPath . '/../phpstan.neon';
 
-        if (!file_exists(realpath($newPhpstan))) {
+        if (!realpath($newPhpstan) || !file_exists(realpath($newPhpstan))) {
             $this->io->write('[digitaldsdev/codestyle]: Copy phpstan.neon to project directory');
             file_put_contents($newPhpstan, fopen($phpstan, 'r'));
         }
